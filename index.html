@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Smart Attendance Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+<body>
+
+    <h1>📊 Smart Attendance Analyzer</h1>
+
+    <!-- FORM -->
+    <div class="card">
+        <h2>Add Attendance</h2>
+        <form id="attendanceForm" onsubmit="addAttendance(event)">
+
+        <input type="text" id="register_no" placeholder="Register No">
+        <input type="text" id="name" placeholder="Student Name">
+        <input type="text" id="subject" placeholder="Subject">
+        <input type="number" id="attended" placeholder="Classes Attended">
+        <input type="number" id="total" placeholder="Total Classes">
+        <button type="submit">Add</button>
+
+
+
+        <p id="result"></p>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard">
+        <div class="stat">👥 Total Students: <span id="totalStudents">0</span></div>
+        <div class="stat">📈 Avg Attendance: <span id="avgAttendance">0</span>%</div>
+        <div class="stat">⚠️ High Risk: <span id="highRisk">0</span></div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card">
+        <h2>Student Records</h2>
+        <table>
+            <thead>
+              <tr>
+              <th>Register No</th>
+              <th>Name</th>
+              <th>Subject</th>
+              <th>Attendance %</th>
+              <th>Risk</th>
+              <th>Action</th>
+              </tr>
+</thead>
+
+            <tbody id="student-table"></tbody>
+        </table>
+    </div>
+
+    <!-- CHART -->
+    <div class="card">
+    <h2>Attendance Chart</h2>
+
+    <div class="chart-controls">
+        <button onclick="switchChart('bar')">Bar Chart</button>
+        <button onclick="switchChart('line')">Line Chart</button>
+    </div>
+
+    <canvas id="attendanceChart"></canvas>
+</div>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<button id="themeToggle">🌙 Dark Mode</button>
+
+</body>
+</html>
